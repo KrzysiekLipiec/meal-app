@@ -1,0 +1,614 @@
+[
+  {
+    "day": "monday",
+    "meals": [
+      {
+        "mealName": "Eggs with chicken ham",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Eggs size M",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 50,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Olive oil",
+            "measurement": {
+              "amount": 10,
+              "type": "volume",
+              "unit": "ml"
+            }
+          },
+          {
+            "ingredientName": "Toast bread",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Chicken breast with rice and vegetables",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Chicken breast",
+            "measurement": {
+              "amount": 300,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Rice",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Mixed vegetables",
+            "measurement": {
+              "amount": 200,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Olive oil",
+            "measurement": {
+              "amount": 5,
+              "type": "volume",
+              "unit": "ml"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Oatmeal with skyr and fruit",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Oat flakes",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Vanilla skyr",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Fruit",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "day": "tuesday",
+    "meals": [
+      {
+        "mealName": "Toasts with chicken ham and cheese",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Toast bread",
+            "measurement": {
+              "amount": 8,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Protein cheese slices",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Tomato",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Pasta with ground turkey and tomato passata",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Pasta",
+            "measurement": {
+              "amount": 150,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Ground turkey",
+            "measurement": {
+              "amount": 300,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Tomato passata",
+            "measurement": {
+              "amount": 400,
+              "type": "volume",
+              "unit": "ml"
+            }
+          },
+          {
+            "ingredientName": "Spices",
+            "measurement": {
+              "type": "toTaste"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Polish zapiekanka with chicken ham",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Polish zapiekanka (mushroom baguette)",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 50,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "day": "wednesday",
+    "meals": [
+      {
+        "mealName": "Omelette with chicken ham and cheese",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Eggs size M",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 50,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Tomato",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Protein cheese slices",
+            "measurement": {
+              "amount": 2,
+              "type": "quantity"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Fried rice with ground turkey",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Rice",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Ground turkey",
+            "measurement": {
+              "amount": 200,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Mixed vegetables",
+            "measurement": {
+              "amount": 250,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Sandwiches with cottage cheese",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Toast bread",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Natural skyr",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Cottage cheese",
+            "measurement": {
+              "amount": 200,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Radish",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Tomato",
+            "measurement": {
+              "type": "optional"
+            }
+          },
+          {
+            "ingredientName": "Salt and Pepper",
+            "measurement": {
+              "type": "toTaste"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "day": "thursday",
+    "meals": [
+      {
+        "mealName": "Oatmeal with vanilla skyr and blueberries",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Oat flakes",
+            "measurement": {
+              "amount": 150,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Vanilla skyr",
+            "measurement": {
+              "amount": 2,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Blueberries",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Donatello pizza with chicken and ham",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Donatello chicken pizza",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 50,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Chicken lunch box with light mozzarella",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Chicken lunch box",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Light mozzarella",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "day": "friday",
+    "meals": [
+      {
+        "mealName": "Breakfast wrap",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Wheat tortillas",
+            "measurement": {
+              "amount": 2,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Eggs size M",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Tuna in water",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Red onion",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Pickled cucumber",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Cheeseburgers",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Wheat buns",
+            "measurement": {
+              "amount": 2,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Ground chicken",
+            "measurement": {
+              "amount": 400,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Protein cheese slices",
+            "measurement": {
+              "amount": 2,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Vegetables",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Oatmeal with skyr and fruit",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Oat flakes",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Skyr",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Fruit",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "day": "saturday",
+    "meals": [
+      {
+        "mealName": "Toasts with chicken ham and cheese",
+        "mealOfDay": "breakfast",
+        "ingredients": [
+          {
+            "ingredientName": "Toast bread",
+            "measurement": {
+              "amount": 8,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Chicken ham",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Protein cheese slices",
+            "measurement": {
+              "amount": 4,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Tomato",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Chicken lunch box with mozzarella and baked salmon",
+        "mealOfDay": "lunch",
+        "ingredients": [
+          {
+            "ingredientName": "Chicken lunch box",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Light mozzarella",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Baked salmon",
+            "measurement": {
+              "amount": 150,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "mealName": "Skyr cheesecake dessert",
+        "mealOfDay": "dinner",
+        "ingredients": [
+          {
+            "ingredientName": "Tea biscuits",
+            "measurement": {
+              "amount": 1,
+              "unit": "package"
+            }
+          },
+          {
+            "ingredientName": "Cottage cheese",
+            "measurement": {
+              "amount": 150,
+              "type": "weight",
+              "unit": "g"
+            }
+          },
+          {
+            "ingredientName": "Vanilla skyr",
+            "measurement": {
+              "amount": 1,
+              "type": "quantity"
+            }
+          },
+          {
+            "ingredientName": "Fruit",
+            "measurement": {
+              "amount": 100,
+              "type": "weight",
+              "unit": "g"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
