@@ -1,5 +1,5 @@
-import { styles } from './BottomNavigation.styles';
-import type { NavItem } from './BottomNavigation.types';
+import { styles } from './styles';
+import type { NavItem } from './types';
 
 export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   const Icon = item.icon;
@@ -9,6 +9,8 @@ export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
     if ('vibrate' in navigator) {
       navigator.vibrate(10);
     }
+
+    // TODO
     console.log('Button clicked!');
   };
 

@@ -1,8 +1,7 @@
-import { styles } from './BottomNavigation.styles';
-
+import { styles } from './styles';
 import { Apple, CookingPot, Home, ShoppingCart } from 'lucide-react';
 import { BottomNavigationButton as BottomNavigationButton } from './BottomNavigationButton';
-import type { NavItem } from './BottomNavigation.types';
+import type { NavItem } from './types';
 
 export const BottomNavigation = () => {
   const navItems: NavItem[] = [
