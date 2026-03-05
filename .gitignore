@@ -26,3 +26,6 @@ dist-ssr/
 # Prettier / ESLint caches
 .prettiercache
 .eslintcache
+
+# Todo planning
+TODO.md
