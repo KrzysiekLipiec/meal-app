@@ -1,9 +1,9 @@
-import { BottomNavigationViewsActivity } from './components/layout/BottomNavigationViewsActivity';
+import { BottomNavigation } from './components/layout/BottomNavigation';
 
 function App() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center">
-      <BottomNavigationViewsActivity />
+      <BottomNavigation />
     </div>
   );
 }

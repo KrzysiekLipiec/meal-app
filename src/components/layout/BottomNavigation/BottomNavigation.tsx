@@ -1,9 +1,9 @@
 // import { styles } from './BottomNavigationViewsActivity.styles';
 
 import { Apple, CookingPot, Home, ShoppingCart, type LucideIcon } from 'lucide-react';
-import { BottomNavigationViewsActivityButton } from './BottomNavigationViewsActivityButton';
+import { BottomNavigationButton as BottomNavigationButton } from './BottomNavigationButton';
 
-export const BottomNavigationViewsActivity = () => {
+export const BottomNavigation = () => {
   interface NavItem {
     label: string;
     icon: LucideIcon; // Use this type from lucide-react
@@ -19,7 +19,7 @@ export const BottomNavigationViewsActivity = () => {
   return (
     <nav className="fixed bottom-0 flex h-1/12 w-full justify-around bg-amber-200 pt-2 pb-[env(safe-area-inset-bottom)]">
       {navItems.map((item) => {
-        return <BottomNavigationViewsActivityButton key={item.label} item={item} />;
+        return <BottomNavigationButton key={item.label} item={item} />;
       })}
     </nav>
   );

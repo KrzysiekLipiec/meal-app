@@ -4,7 +4,7 @@ interface NavItem {
   label: string;
   icon: LucideIcon;
 }
-export const BottomNavigationViewsActivityButton = ({ item }: { item: NavItem }) => {
+export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   const Icon = item.icon;
 
   const handleButtonClick = () => {
