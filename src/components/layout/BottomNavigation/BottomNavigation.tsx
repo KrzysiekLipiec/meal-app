@@ -5,10 +5,10 @@ import type { NavItem } from './types';
 
 export const BottomNavigation = () => {
   const navItems: NavItem[] = [
-    { label: 'Today', icon: Home },
-    { label: 'Kitchen', icon: ShoppingCart },
-    { label: 'Plan', icon: Apple },
-    { label: 'Meals', icon: CookingPot },
+    { label: 'Today', icon: Home, route: '/' },
+    { label: 'Kitchen', icon: ShoppingCart, route: '/Kitchen' },
+    { label: 'Plan', icon: Apple, route: '/Plan' },
+    { label: 'Meals', icon: CookingPot, route: '/Meals' },
   ];
 
   return (

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { styles } from './styles';
 import type { NavItem } from './types';
 
@@ -15,9 +16,9 @@ export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   };
 
   return (
-    <button className={styles.button} onClick={handleButtonClick}>
+    <NavLink to={item.route} className={styles.button} onClick={handleButtonClick}>
       <Icon className={styles.icon} />
-      {item.label}
-    </button>
+      <span className={styles.text}>{item.label}</span>
+    </NavLink>
   );
 };

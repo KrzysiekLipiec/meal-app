@@ -3,4 +3,5 @@ import type { LucideIcon } from 'lucide-react';
 export interface NavItem {
   label: string;
   icon: LucideIcon;
+  route: string;
 }
