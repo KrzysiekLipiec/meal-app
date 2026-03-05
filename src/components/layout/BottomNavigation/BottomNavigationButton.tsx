@@ -1,4 +1,5 @@
-import type { NavItem } from "./BottomNavigation.types";
+import { styles } from './BottomNavigation.styles';
+import type { NavItem } from './BottomNavigation.types';
 
 export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   const Icon = item.icon;
@@ -12,8 +13,8 @@ export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   };
 
   return (
-    <button className="flex-1 transition-transform duration-75 ease-out select-none active:scale-90" onClick={handleButtonClick}>
-      <Icon className="mx-auto h-6 w-6 flex-1" />
+    <button className={styles.button} onClick={handleButtonClick}>
+      <Icon className={styles.icon} />
       {item.label}
     </button>
   );

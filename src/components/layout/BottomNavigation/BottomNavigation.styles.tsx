@@ -1,12 +1,9 @@
-// export const styles = {
-//   // The main bar fixed at the bottom
-//   container: `
-//     fixed bottom-0 left-0 right-0
-//     h-16 bg-white border-t border-slate-200
-//     flex items-center justify-around
-//     px-4 pb-safe z-50
-//   `,
-// };
+export const styles = {
+  // The main bar fixed at the bottom
+  container: `fixed bottom-0 flex h-1/12 w-full justify-around bg-amber-200 pt-2 pb-[env(safe-area-inset-bottom)]`,
+  button: `flex-1 transition-transform duration-75 ease-out select-none active:scale-90`,
+  icon: `mx-auto h-6 w-6 flex-1`,
+};
 
 //   // Individual button wrapper
 //   navItem: `
