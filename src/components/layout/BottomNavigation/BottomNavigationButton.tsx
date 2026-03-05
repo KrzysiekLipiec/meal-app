@@ -1,9 +1,5 @@
-import type { LucideIcon } from 'lucide-react';
+import type { NavItem } from "./BottomNavigation.types";
 
-interface NavItem {
-  label: string;
-  icon: LucideIcon;
-}
 export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
   const Icon = item.icon;
 

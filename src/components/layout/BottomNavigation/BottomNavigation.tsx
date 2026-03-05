@@ -1,14 +1,10 @@
 // import { styles } from './BottomNavigationViewsActivity.styles';
 
-import { Apple, CookingPot, Home, ShoppingCart, type LucideIcon } from 'lucide-react';
+import { Apple, CookingPot, Home, ShoppingCart } from 'lucide-react';
 import { BottomNavigationButton as BottomNavigationButton } from './BottomNavigationButton';
+import type { NavItem } from './BottomNavigation.types';
 
 export const BottomNavigation = () => {
-  interface NavItem {
-    label: string;
-    icon: LucideIcon; // Use this type from lucide-react
-  }
-
   const navItems: NavItem[] = [
     { label: 'Today', icon: Home },
     { label: 'Kitchen', icon: ShoppingCart },
