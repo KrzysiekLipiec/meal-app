@@ -46,16 +46,21 @@
 }
 
 :root {
+  --foreground: hsl(205 49% 8%);
+  --background: hsl(206 54% 97%);
+  --primary: hsl(204 57% 53%);
+  --secondary: hsl(204 62% 75%);
+  --accent: hsl(204 66% 64%);
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  /*--background: oklch(1 0 0);*/
+  /*--foreground: oklch(0.129 0.042 264.695);*/
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  /*--primary: oklch(0.208 0.042 265.755);*/
   --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
+  /*--secondary: oklch(0.968 0.007 247.896);*/
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
@@ -118,7 +123,33 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html,
   body {
-    @apply bg-background text-foreground;
+    @apply bg-primary text-foreground;
   }
+
+  #root {
+    @apply bg-background;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+  /* Prevents "pull-to-refresh" and elastic bouncing on mobile */
+  overscroll-behavior: none;
+}
+
+html,
+body {
+  background-color: #4392d1; /* The blue color */
+}
+
+#root {
+  background-color: #f1f5f9; /* The gray app background */
+  height: 100dvh;
+  width: 100%;
 }

@@ -21,7 +21,10 @@ export default defineConfig({
         name: 'Meal Planner',
         short_name: 'Meals',
         description: 'Offline-first meal & diet planner',
-        theme_color: '#ffffff',
+        theme_color: '#4392d1',
+        background_color: '#4395cb',
+        display: 'standalone',
+        orientation: 'portrait',
         icons: [
           {
             src: 'web-app-manifest-192x192.png',

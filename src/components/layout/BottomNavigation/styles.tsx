@@ -1,6 +1,6 @@
 export const styles = {
   // The main bar fixed at the bottom
-  container: `fixed bottom-0 flex h-1/12 w-full justify-around bg-amber-200 pt-2 pb-[env(safe-area-inset-bottom)]`,
+  container: `flex-none fixed bottom-0 flex min-h-[4rem] w-full justify-around bg-primary pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]`,
   button: `flex flex-col justify-around flex-1 transition-transform duration-75 ease-out select-none active:scale-90`,
   icon: `mx-auto h-6 w-6 flex-1`,
   text: `mx-auto flex-1`,
