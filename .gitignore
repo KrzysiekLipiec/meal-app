@@ -12,6 +12,12 @@ dist/
 dist-ssr/
 *.local
 
+# pnpm dev/install handshake signal
+.vite-stop
+
+# Scratch diet data (PL version not in use)
+src/temporary/diet_pl.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
