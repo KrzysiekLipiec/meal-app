@@ -46,10 +46,10 @@
 }
 
 :root {
-  --foreground: hsl(205 49% 8%);
-  --background: hsl(206 54% 97%);
-  --primary: hsl(204 57% 53%);
-  --secondary: hsl(204 62% 75%);
+  --foreground: #171c1e; /* design on-surface */
+  --background: #f5fafc; /* design surface */
+  --primary: #006191; /* design primary */
+  --secondary: #c6e7ff; /* design secondary-fixed */
   --accent: hsl(204 66% 64%);
   --radius: 0.625rem;
   /*--background: oklch(1 0 0);*/
@@ -59,11 +59,11 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
   /*--primary: oklch(0.208 0.042 265.755);*/
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary-foreground: #ffffff; /* design on-primary */
   /*--secondary: oklch(0.968 0.007 247.896);*/
-  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --secondary-foreground: #184b66; /* design on-secondary-fixed-variant */
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted-foreground: #40484f; /* design on-surface-variant */
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
@@ -92,12 +92,12 @@
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --primary: #90cdff; /* design inverse-primary */
+  --primary-foreground: #001e30; /* design on-primary-fixed */
+  --secondary: #004b71; /* design on-primary-fixed-variant */
+  --secondary-foreground: #cbe6ff; /* design primary-fixed */
   --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
+  --muted-foreground: #bfc7d1; /* design outline-variant */
   --accent: oklch(0.279 0.041 260.031);
   --accent-foreground: oklch(0.984 0.003 247.858);
   --destructive: oklch(0.704 0.191 22.216);
@@ -126,7 +126,7 @@
 
   html,
   body {
-    @apply bg-primary text-foreground;
+    @apply bg-background text-foreground;
   }
 
   #root {
@@ -143,13 +143,7 @@ body,
   overscroll-behavior: none;
 }
 
-html,
-body {
-  background-color: #4392d1; /* The blue color */
-}
-
 #root {
-  background-color: #f1f5f9; /* The gray app background */
   height: 100dvh;
   width: 100%;
 }

@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { styles } from './styles';
 import type { NavItem } from './types';
+import { cn } from '@/lib/utils';
 
-export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
+export const BottomNavigationButton = ({ item, isActive, onClick }: { item: NavItem; isActive: boolean; onClick: () => void }) => {
   const Icon = item.icon;
 
   const handleButtonClick = () => {
@@ -11,14 +11,20 @@ export const BottomNavigationButton = ({ item }: { item: NavItem }) => {
       navigator.vibrate(10);
     }
 
-    // TODO
-    console.log('Button clicked!');
+    onClick();
   };
 
   return (
-    <NavLink to={item.route} className={styles.button} onClick={handleButtonClick}>
-      <Icon className={styles.icon} />
-      <span className={styles.text}>{item.label}</span>
+    <NavLink
+      to={item.route}
+      className={cn(
+        'flex flex-col items-center justify-center rounded-2xl px-5 py-2',
+        isActive ? 'bg-secondary text-secondary-foreground transition-all duration-300 active:scale-90' : 'hover:text-primary transition-colors',
+      )}
+      onClick={handleButtonClick}
+    >
+      <Icon className="h-6 w-6" />
+      <span className="font-jakarta mt-1 text-[11px] font-semibold tracking-wide">{item.label}</span>
     </NavLink>
   );
 };

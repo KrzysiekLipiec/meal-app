@@ -35,3 +35,6 @@ src/temporary/diet_pl.json
 
 # Todo planning
 TODO.md
+
+# Zip files
+*.zip
