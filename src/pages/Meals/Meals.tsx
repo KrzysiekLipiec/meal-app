@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SEED_MEALS } from '@/db/seeds';
-import { IngredientItem } from '@/features/meals/components/MealIngredient';
+import { IngredientItem } from '@/features/meals/components';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
