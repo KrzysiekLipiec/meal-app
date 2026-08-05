@@ -1,8 +1,10 @@
 import { db } from '@/db/db';
 import type { MealIngredient } from '@/db/schema';
+import { DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
-export const AddMealForm = () => {
+export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const [name, setName] = useState('tmpName');
   const [ingredients, setIngredients] = useState<MealIngredient[]>([]);
   const [instructions, setInstructions] = useState('');
@@ -24,17 +26,29 @@ export const AddMealForm = () => {
       setName('');
       setIngredients([]);
       setInstructions('');
+      closeDrawer();
     } catch (error) {
-      setStatus(`Failed to add ${name}: ${error}`);
+      const message = error instanceof Error ? error.message : String(error);
+      setStatus(`Failed to add ${name}: ${message}`);
     }
   }
 
   return (
-    <>
-      <p>{status}</p>
-      <button className="border hover:bg-red-600" onClick={() => void addMeal()}>
-        CLICK
-      </button>
-    </>
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerTitle>New meal</DrawerTitle>
+        <DrawerDescription>Add ingredients and instructions</DrawerDescription>
+      </DrawerHeader>
+      <div className="p-4">
+        {/*form goes here*/}
+        <p>{status}</p>
+      </div>
+      <DrawerFooter>
+        <Button onClick={() => void addMeal()}>Submit</Button>
+        <DrawerClose asChild>
+          <Button variant="outline">Cancel</Button>
+        </DrawerClose>
+      </DrawerFooter>
+    </DrawerContent>
   );
 };
