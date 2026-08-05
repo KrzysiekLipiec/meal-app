@@ -7,11 +7,11 @@ export const IngredientItem = ({ item }: { item: MealIngredient }) => {
   return (
     <div className="flex items-center justify-between">
       <span>{ingredientData?.name ?? 'Unknown Ingredient'}</span>
-      <div className="flex items-baseline text-gray-600">
+      <div className="flex items-baseline text-muted-foreground">
         {!item.isSeasoning && item.measurement && (
           <>
-            <span className="text-gray-700">{item.measurement?.amount}</span>
-            {item.measurement.unit !== 'quantity' && <span className="ml-1 text-gray-700">{item.measurement?.unit}</span>}
+            <span>{item.measurement?.amount}</span>
+            {item.measurement.unit !== 'quantity' && <span className="ml-1">{item.measurement?.unit}</span>}
           </>
         )}
       </div>
