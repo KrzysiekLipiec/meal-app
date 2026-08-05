@@ -1,7 +1,12 @@
 import { Dexie, type EntityTable } from 'dexie';
-import type { Meal } from './schema';
+import type { Ingredient, Meal } from './schema';
+import { SEED_INGREDIENTS, SEED_MEALS } from './seeds';
 
 const db = new Dexie('MealAppDB') as Dexie & {
+  ingredients: EntityTable<
+    Ingredient,
+    'id' // primary key "id" (for the typings only)
+  >;
   meals: EntityTable<
     Meal,
     'id' // primary key "id" (for the typings only)
@@ -10,7 +15,13 @@ const db = new Dexie('MealAppDB') as Dexie & {
 
 // Schema declaration:
 db.version(1).stores({
-  meals: '++id, name, ingredients, instructions', // primary key "id" (for the runtime!)
+  ingredients: '++id, name', // primary key "id" (for the runtime!)
+  meals: '++id, name', // primary key "id" (for the runtime!)
+});
+
+db.on('populate', async () => {
+  await db.ingredients.bulkAdd(SEED_INGREDIENTS);
+  await db.meals.bulkAdd(SEED_MEALS);
 });
 
 export { db };
