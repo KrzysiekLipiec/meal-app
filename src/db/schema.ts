@@ -7,20 +7,20 @@ export interface Measurement {
 }
 
 export interface Ingredient {
-  id: string;
+  id: number;
   name: string;
   defaultMeasurement?: Measurement;
 }
 
 export interface MealIngredient {
-  ingredientId: string;
+  ingredientId: number;
   measurement?: Measurement;
   isOptional?: boolean;
   isSeasoning?: boolean;
 }
 
 export interface Meal {
-  id: string;
+  id: number;
   name: string;
   ingredients: MealIngredient[];
   instructions?: string;
@@ -33,14 +33,14 @@ export const MEAL_TIMES = ['Early Morning', 'Breakfast', 'Mid-Morning Snack', 'L
 export type TimeOfDay = (typeof MEAL_TIMES)[number];
 
 export interface ScheduledMeal {
-  id: string;
+  id: number;
   dayOfTheWeek: DayOfWeek;
   meal: Meal;
   timeOfDay: TimeOfDay;
 }
 
 export interface Diet {
-  id: string;
+  id: number;
   name: string;
   scheduledMeals: ScheduledMeal[];
 }
