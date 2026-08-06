@@ -51,4 +51,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // CIFS/NAS mounts don't deliver inotify events reliably; poll instead
+  server: {
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
+  },
 });
