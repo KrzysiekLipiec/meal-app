@@ -14,7 +14,7 @@ export const Meals = () => {
 
   return (
     <>
-      <ScrollArea className="relative h-full rounded-md p-4 whitespace-nowrap">
+      <ScrollArea className="relative h-full rounded-md p-2 whitespace-nowrap">
         <div className="pb-20">
           <Accordion type="multiple" className="rounded-lg bg-white">
             {(meals ?? []).map((meal) => (
