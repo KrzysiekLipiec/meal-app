@@ -2,15 +2,16 @@ import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler']],
-      },
+    react(),
+    // React Compiler via @rolldown/plugin-babel (plugin-react 6 dropped the `babel` option)
+    babel({
+      presets: [reactCompilerPreset()],
     }),
     tailwindcss(),
     VitePWA({
@@ -48,7 +49,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     },
   },
   // CIFS/NAS mounts don't deliver inotify events reliably; poll instead
