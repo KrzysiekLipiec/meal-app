@@ -38,7 +38,11 @@ export const mealFormSchema = z.object({
     )
     .min(1, 'Add at least one ingredient'),
 
-  instructions: z.string().trim().optional(),
+  instructions: z
+    .string()
+    .trim()
+    .optional()
+    .transform((v) => v ?? undefined),
 });
 
 export type MealFormValues = z.infer<typeof mealFormSchema>;
