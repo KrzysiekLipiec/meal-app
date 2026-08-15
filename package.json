@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.8.0",
     "@tailwindcss/vite": "^4.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -28,11 +29,13 @@
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.85.0",
     "react-router-dom": "^7.13.1",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.0",
     "vaul": "^1.1.2",
-    "workbox-window": "^7.4.0"
+    "workbox-window": "^7.4.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
