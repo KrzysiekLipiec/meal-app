@@ -23,7 +23,7 @@ export const mealFormSchema = z.object({
     .array(
       z.object({
         // Radix Select hands us strings, so coerce ids and amounts from inputs.
-        ingredientId: z.coerce.number().int().positive('Select an ingredient'),
+        ingredientName: z.string().trim().min(1, 'Choose or type an ingredient'),
 
         measurement: z
           .object({
