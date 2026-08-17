@@ -14,17 +14,20 @@ export function suggestIngredients(query: string, allIngredients: Ingredient[], 
   const normalizedQuery = normalizeString(query);
   const queryWords = wordsOfString(query);
 
+  // 0. exact match first, unconditionally: the most important result must not be
+  //    lost when the contains tier fills the limit before the exact ingredient
+  //    appears in DB order (e.g. plain "egg" after 13 exotic egg variants).
+  const exact = allIngredients.find((ingredient) => normalizeString(ingredient.name) === normalizedQuery);
+  if (exact) suggestions.push({ id: exact.id, name: exact.name, tier: 'exact' });
+
   for (const ingredient of allIngredients) {
     if (suggestions.length >= limit) break;
 
     const normalizedName = normalizeString(ingredient.name);
     const nameWords = wordsOfString(ingredient.name);
 
-    // 0. exact match
-    if (normalizedName === normalizedQuery) {
-      suggestions.unshift({ id: ingredient.id, name: ingredient.name, tier: 'exact' });
-      continue;
-    }
+    // the exact ingredient is already in the list; don't classify it again
+    if (normalizedName === normalizedQuery) continue;
 
     // 1. startsWith per word: each query word prefixes the matching name word
     //    ("chicken bre" matches "Chicken breast")
