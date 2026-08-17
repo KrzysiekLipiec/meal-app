@@ -6,16 +6,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { db } from '@/db/db';
 import type { MealIngredient } from '@/db/schema';
+import { findOrCreateIngredient, suggestIngredients } from '@/features/ingredients';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { Controller, useFieldArray, useForm, type Resolver } from 'react-hook-form';
 import { UNITS, mealFormDefaults, mealFormSchema, type MealFormValues } from '../mealFormSchema';
 import { XIcon } from 'lucide-react';
+import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
   const [status, setStatus] = useState('');
+  const allIngredients = useLiveQuery(() => db.ingredients.toArray(), []);
 
-  // TEMPORARY: allIngredients (useLiveQuery) removed with the Select; the combobox (plan step 4) restores it for suggestions.
   const form = useForm<MealFormValues>({
     resolver: zodResolver(mealFormSchema) as Resolver<MealFormValues>,
     defaultValues: mealFormDefaults,
@@ -28,11 +31,9 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
 
   async function onSubmit(data: MealFormValues) {
     try {
-      // TEMPORARY: inline name→id resolution until findOrCreateIngredient lands (plan step 3, features/ingredients).
       const ingredients: MealIngredient[] = [];
       for (const row of data.ingredients) {
-        const existing = await db.ingredients.where('name').equalsIgnoreCase(row.ingredientName).first();
-        const ingredientId = existing?.id ?? (await db.ingredients.add({ name: row.ingredientName }));
+        const ingredientId = await findOrCreateIngredient(row.ingredientName);
         ingredients.push({ ingredientId, measurement: row.measurement, isOptional: row.isOptional, isSeasoning: row.isSeasoning });
       }
       await db.meals.add({
@@ -76,16 +77,33 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                   <Controller
                     name={`ingredients.${index}.ingredientName`}
                     control={form.control}
-                    render={({ field: controllerField, fieldState }) => (
-                      <Input
-                        {...controllerField}
-                        id={`form-rhf-array-ingredient-${index}`}
-                        aria-invalid={fieldState.invalid}
-                        placeholder="Ingredient"
-                        autoComplete="off"
-                        className="min-w-0 flex-1"
-                      />
-                    )}
+                    render={({ field: controllerField }) => {
+                      const suggestions = suggestIngredients(controllerField.value ?? '', allIngredients ?? []);
+                      return (
+                        <Combobox
+                          inputValue={controllerField.value ?? ''}
+                          onInputValueChange={controllerField.onChange}
+                          value={controllerField.value ?? ''}
+                          onValueChange={controllerField.onChange}
+                        >
+                          <ComboboxInput showTrigger={false} placeholder="Ingredient" className="min-w-0 flex-1" />
+                          <ComboboxContent>
+                            <ComboboxEmpty>No match. It'll be added as a new ingredient.</ComboboxEmpty>
+                            <ComboboxList>
+                              {suggestions.map((suggestion) => (
+                                <ComboboxItem
+                                  key={suggestion.id}
+                                  value={suggestion.name}
+                                  onClick={() => controllerField.onChange(suggestion.name)}
+                                >
+                                  {suggestion.name}
+                                </ComboboxItem>
+                              ))}
+                            </ComboboxList>
+                          </ComboboxContent>
+                        </Combobox>
+                      );
+                    }}
                   />
                   <Controller
                     name={`ingredients.${index}.measurement.amount`}
