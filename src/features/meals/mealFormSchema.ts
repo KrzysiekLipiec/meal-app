@@ -47,8 +47,17 @@ export const mealFormSchema = z.object({
 
 export type MealFormValues = z.infer<typeof mealFormSchema>;
 
-export const mealFormDefaults: MealFormValues = {
+/**
+ * A blank ingredient row for the form. amount/unit are pre-parse strings (the
+ * DOM hands us text); MealFormValues is the post-parse shape with coerced
+ * numbers, so this is the same input→output cast the zodResolver makes.
+ */
+export const createBlankIngredientRow = () =>
+  ({ ingredientName: '', measurement: { amount: '', unit: '' } }) as unknown as MealFormValues['ingredients'][number];
+
+export const mealFormDefaults = {
   name: '',
-  ingredients: [],
+  // meals require at least one ingredient, so the form opens with one blank row
+  ingredients: [createBlankIngredientRow()],
   instructions: '',
-};
+} as unknown as MealFormValues;

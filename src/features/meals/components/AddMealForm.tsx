@@ -7,10 +7,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { db } from '@/db/db';
 import type { MealIngredient } from '@/db/schema';
 import { findOrCreateIngredient, suggestIngredients } from '@/features/ingredients';
+import { normalizeString } from '@/utils/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRef, useState } from 'react';
 import { Controller, useFieldArray, useForm, type Resolver } from 'react-hook-form';
-import { UNITS, mealFormDefaults, mealFormSchema, type MealFormValues } from '../mealFormSchema';
+import { UNITS, createBlankIngredientRow, mealFormDefaults, mealFormSchema, type MealFormValues } from '../mealFormSchema';
 import { XIcon } from 'lucide-react';
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
 import { useLiveQuery } from 'dexie-react-hooks';
@@ -31,10 +32,11 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
 
   // one ref slot per ingredient row, indexed to match `fields`
   const ingredientInputs = useRef<(HTMLInputElement | null)[]>([]);
+  const amountInputs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleAddIngredient = () => {
     const newRowIndex = fields.length;
-    append({ ingredientName: '' });
+    append(createBlankIngredientRow());
     // focus the new row's ingredient input once it's mounted
     requestAnimationFrame(() => {
       ingredientInputs.current[newRowIndex]?.focus();
@@ -66,7 +68,11 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
         <DrawerTitle>New meal</DrawerTitle>
         <DrawerDescription>Add ingredients and instructions</DrawerDescription>
       </DrawerHeader>
-      <form id="add-meal-form" className="p-4" onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}>
+      <form
+        id="add-meal-form"
+        className="min-h-0 flex-1 overflow-y-auto p-4"
+        onSubmit={(e) => void form.handleSubmit(onSubmit)(e)}
+      >
         <FieldGroup className="gap-4">
           <Controller
             name="name"
@@ -102,6 +108,27 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                           <ComboboxInput
                             ref={(el) => {
                               ingredientInputs.current[index] = el;
+                            }}
+                            onKeyDown={(event) => {
+                              if (event.key === 'Enter') {
+                                // Enter confirms the ingredient (Base UI commits the highlighted
+                                // item); don't let it submit the meal form before amount/unit
+                                // are filled. Move on to the amount field instead.
+                                event.preventDefault();
+                                // If nothing was highlighted, snap the typed text to the stored
+                                // casing of the matching ingredient ("olive oil" -> "Olive oil"),
+                                // so the form shows the same name that will be saved.
+                                const typed = (controllerField.value ?? '').trim();
+                                if (typed) {
+                                  const canonical = allIngredients?.find(
+                                    (ingredient) => normalizeString(ingredient.name) === normalizeString(typed),
+                                  )?.name;
+                                  if (canonical && canonical !== typed) {
+                                    controllerField.onChange(canonical);
+                                  }
+                                }
+                                amountInputs.current[index]?.focus();
+                              }
                             }}
                             showTrigger={false}
                             placeholder="Ingredient"
@@ -141,10 +168,13 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                     render={({ field: controllerField }) => (
                       <Input
                         {...controllerField}
+                        ref={(el) => {
+                          amountInputs.current[index] = el;
+                        }}
                         type="text"
                         inputMode="decimal"
                         placeholder="Amount"
-                        className="w-20 shrink-0 text-center"
+                        className="flex-1 text-center"
                         aria-label={`Amount for ingredient ${index + 1}`}
                       />
                     )}
@@ -154,7 +184,7 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                     control={form.control}
                     render={({ field: controllerField }) => (
                       <Select value={controllerField.value ?? ''} onValueChange={controllerField.onChange}>
-                        <SelectTrigger className="w-28 shrink-0" aria-label={`Unit for ingredient ${index + 1}`}>
+                        <SelectTrigger className="flex-1" aria-label={`Unit for ingredient ${index + 1}`}>
                           <SelectValue placeholder="Unit" />
                         </SelectTrigger>
                         <SelectContent>
