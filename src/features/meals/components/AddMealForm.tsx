@@ -8,7 +8,7 @@ import { db } from '@/db/db';
 import type { MealIngredient } from '@/db/schema';
 import { findOrCreateIngredient, suggestIngredients } from '@/features/ingredients';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Controller, useFieldArray, useForm, type Resolver } from 'react-hook-form';
 import { UNITS, mealFormDefaults, mealFormSchema, type MealFormValues } from '../mealFormSchema';
 import { XIcon } from 'lucide-react';
@@ -28,6 +28,18 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
     control: form.control,
     name: 'ingredients',
   });
+
+  // one ref slot per ingredient row, indexed to match `fields`
+  const ingredientInputs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const handleAddIngredient = () => {
+    const newRowIndex = fields.length;
+    append({ ingredientName: '' });
+    // focus the new row's ingredient input once it's mounted
+    requestAnimationFrame(() => {
+      ingredientInputs.current[newRowIndex]?.focus();
+    });
+  };
 
   async function onSubmit(data: MealFormValues) {
     try {
@@ -81,21 +93,25 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                       const suggestions = suggestIngredients(controllerField.value ?? '', allIngredients ?? []);
                       return (
                         <Combobox
+                          items={suggestions.map((suggestion) => suggestion.name)}
                           inputValue={controllerField.value ?? ''}
                           onInputValueChange={controllerField.onChange}
                           value={controllerField.value ?? ''}
                           onValueChange={controllerField.onChange}
                         >
-                          <ComboboxInput showTrigger={false} placeholder="Ingredient" className="min-w-0 flex-1" />
+                          <ComboboxInput
+                            ref={(el) => {
+                              ingredientInputs.current[index] = el;
+                            }}
+                            showTrigger={false}
+                            placeholder="Ingredient"
+                            className="min-w-0 flex-1"
+                          />
                           <ComboboxContent>
                             <ComboboxEmpty>No match. It'll be added as a new ingredient.</ComboboxEmpty>
                             <ComboboxList>
                               {suggestions.map((suggestion) => (
-                                <ComboboxItem
-                                  key={suggestion.id}
-                                  value={suggestion.name}
-                                  onClick={() => controllerField.onChange(suggestion.name)}
-                                >
+                                <ComboboxItem key={suggestion.id} value={suggestion.name}>
                                   {suggestion.name}
                                 </ComboboxItem>
                               ))}
@@ -104,38 +120,6 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                         </Combobox>
                       );
                     }}
-                  />
-                  <Controller
-                    name={`ingredients.${index}.measurement.amount`}
-                    control={form.control}
-                    render={({ field: controllerField }) => (
-                      <Input
-                        {...controllerField}
-                        type="text"
-                        inputMode="decimal"
-                        placeholder="Amount"
-                        className="w-16 shrink-0 text-center"
-                        aria-label={`Amount for ingredient ${index + 1}`}
-                      />
-                    )}
-                  />
-                  <Controller
-                    name={`ingredients.${index}.measurement.unit`}
-                    control={form.control}
-                    render={({ field: controllerField }) => (
-                      <Select value={controllerField.value ?? ''} onValueChange={controllerField.onChange}>
-                        <SelectTrigger className="w-24 shrink-0" aria-label={`Unit for ingredient ${index + 1}`}>
-                          <SelectValue placeholder="Unit" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {UNITS.map((unit) => (
-                            <SelectItem key={unit} value={unit}>
-                              {unit}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
                   />
                   {fields.length > 1 && (
                     <Button
@@ -150,6 +134,40 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
                     </Button>
                   )}
                 </div>
+                <div className="flex items-center gap-2">
+                  <Controller
+                    name={`ingredients.${index}.measurement.amount`}
+                    control={form.control}
+                    render={({ field: controllerField }) => (
+                      <Input
+                        {...controllerField}
+                        type="text"
+                        inputMode="decimal"
+                        placeholder="Amount"
+                        className="w-20 shrink-0 text-center"
+                        aria-label={`Amount for ingredient ${index + 1}`}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name={`ingredients.${index}.measurement.unit`}
+                    control={form.control}
+                    render={({ field: controllerField }) => (
+                      <Select value={controllerField.value ?? ''} onValueChange={controllerField.onChange}>
+                        <SelectTrigger className="w-28 shrink-0" aria-label={`Unit for ingredient ${index + 1}`}>
+                          <SelectValue placeholder="Unit" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {UNITS.map((unit) => (
+                            <SelectItem key={unit} value={unit}>
+                              {unit}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
                 {rowErrorMessage && <p className="text-destructive text-sm">{rowErrorMessage}</p>}
               </div>
             );
@@ -157,7 +175,7 @@ export const AddMealForm = ({ closeDrawer }: { closeDrawer: () => void }) => {
 
           {form.formState.errors.ingredients?.message && <p className="text-destructive text-sm">{form.formState.errors.ingredients.message}</p>}
 
-          <Button type="button" variant="outline" size="sm" onClick={() => append({ ingredientName: '' })}>
+          <Button type="button" variant="outline" size="sm" onClick={handleAddIngredient}>
             Add Ingredient
           </Button>
 
