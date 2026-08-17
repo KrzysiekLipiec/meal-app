@@ -9,7 +9,9 @@ export interface Measurement {
 export interface Ingredient {
   id: number;
   name: string;
-  defaultMeasurement?: Measurement;
+  // unit is stable per ingredient (eggs -> quantity, flour -> g); amount is
+  // per-use and lives on the meal-ingredient link, never here.
+  defaultUnit?: UnitType;
 }
 
 export interface MealIngredient {

@@ -1,13 +1,13 @@
 import type { Ingredient, Meal } from './schema';
 
 export const SEED_INGREDIENTS: Ingredient[] = [
-  { id: 1, name: 'Eggs size M', defaultMeasurement: { amount: 1, unit: 'quantity' } },
-  { id: 2, name: 'Chicken ham', defaultMeasurement: { amount: 100, unit: 'g' } },
-  { id: 3, name: 'Olive oil', defaultMeasurement: { amount: 5, unit: 'ml' } },
-  { id: 4, name: 'Toast bread', defaultMeasurement: { amount: 1, unit: 'slice' } },
-  { id: 5, name: 'Chicken breast', defaultMeasurement: { amount: 100, unit: 'g' } },
-  { id: 6, name: 'Rice', defaultMeasurement: { amount: 100, unit: 'g' } },
-  { id: 7, name: 'Mixed vegetables', defaultMeasurement: { amount: 100, unit: 'g' } },
+  { id: 1, name: 'Eggs size M', defaultUnit: 'quantity' },
+  { id: 2, name: 'Chicken ham', defaultUnit: 'g' },
+  { id: 3, name: 'Olive oil', defaultUnit: 'ml' },
+  { id: 4, name: 'Toast bread', defaultUnit: 'slice' },
+  { id: 5, name: 'Chicken breast', defaultUnit: 'g' },
+  { id: 6, name: 'Rice', defaultUnit: 'g' },
+  { id: 7, name: 'Mixed vegetables', defaultUnit: 'g' },
   { id: 8, name: 'Salt' },
 ];
 
